@@ -1,0 +1,21 @@
+ %Question2
+ %radiation pattern in db
+clear all;
+close all;
+a1=94.449;
+a2=128.9;
+a3=37.2229;
+a4=3.778;
+theta=0:.001:360;
+u=((pi)./2)*cosd(theta);
+af=a1+a2.*((2.*(cos(u)).^2)-1)+a3.*((8.*(cos(u)).^4)-(8.*(cos(u)).^2)+1)+a4.*((32.*(cos(u)).^6)-48.*(cos(u).^4)+18.*((cos(u)).^2)-1);
+afdb=10.*log10(abs(af));
+afdb=afdb-max(afdb);
+polarpattern(afdb)
+
+R0=10^(30/20);
+d1=2.*(R0^2);
+dir=10*log10(d1./(1+((R0^2)-1).*(1.144.*(2/7))))
+h1=cosd(90)-(0.443.*(2/7));
+h2=cosd(90)+(0.443.*(2/7)   );
+hpbw=10.*log10(1.144*(acosd(h1)-acosd(h2)))
